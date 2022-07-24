@@ -1,0 +1,8 @@
+<div style="display: flex; justify-content:center; align-items:center; flex-direction:column; width: 300px;">
+    <span style="font-size: 16px; font-weight:bold">Confirm Logout</span><br/>
+    <span>Are you sure you want to logout?</span><br/>
+    <div class="row-space-between">
+        <button mat-raised-button (click)="closeAlert()">Cancel</button>
+        <button mat-raised-button (click)="logout()" color="primary">Yes</button>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container-fluid">
+        <form class="headerForm sticky">
+            <mat-form-field >
+                <span matPrefix> </span>
+                <input type="text" matInput placeholder="Search by section" name="search" [(ngModel)]="searchText">
+                <button matSuffix mat-button (click)="filter(searchText)">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+            <div style="margin-left:auto">
+                <button mat-raised-button (click)="showLogoutAlert()">Logout</button>
+            </div>
+        </form>
+    <mat-tab-group>
+        <mat-tab label="Article">
+            <mat-grid-list [cols]="breakpoint" [rowHeight]="rowHeight" (window:resize)="onResize($event)"
+                gutterSize="20px" class="hiddenScroll">
+                <mat-grid-tile *ngFor="let post of listPostsArticle" (click)="showPopup(post)"
+                    style="margin-top:20px;border-bottom: 1px solid #eee">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4" style="display: flex;justify-content:center">
+                                <img class="imageItem"
+                                src="https://www.politico.com/dims4/default/130fc6f/2147483647/strip/true/crop/1160x773+0+0/resize/1290x860!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F8c%2F18%2F7fb9b88e4e588a4cc84bb8da9bbf%2F200613-nyt-getty-773.jpg">
+                            </div>
+                            <div class="col-sm-8">
+                                <div>
+                                    <app-row-view title="Title:"
+                                        value="{{ (post.abstract.length>100)? (post.abstract |slice:0:100)+'...':(post.abstract)}}">
+                                    </app-row-view>
+                                    <app-row-view title="Description:"
+                                        value="{{ (post.lead_paragraph.length>100)?(post.lead_paragraph | slice:0:100)+'...':(post.lead_paragraph)}}">
+                                    </app-row-view>
+                                    <app-row-view title="Source:" value="{{post.source}}"></app-row-view>
+                                    <app-row-view title="Section:" value="{{post.section_name}}"></app-row-view>
+                                    <app-row-view title="Date:" value="{{post.pub_date.split('T')[0]}}"></app-row-view>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+
+        <mat-tab label="Multimedia">
+            <mat-grid-list [cols]="breakpoint" [rowHeight]="rowHeight" (window:resize)="onResize($event)"
+                gutterSize="20px" class="hiddenScroll">
+                <mat-grid-tile *ngFor="let post of listPostsMultimedia" (click)="showPopup(post)"
+                    style="margin-top:20px;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-4" style="display: flex;justify-content:center">
+                                <img class="imageItem"
+                                    src="https://www.politico.com/dims4/default/130fc6f/2147483647/strip/true/crop/1160x773+0+0/resize/1290x860!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F8c%2F18%2F7fb9b88e4e588a4cc84bb8da9bbf%2F200613-nyt-getty-773.jpg">
+                            </div>
+                            <div class="col-sm-8">
+                                <div>
+                                    <app-row-view title="Title:"
+                                        value="{{ (post.abstract.length>100)? (post.abstract |slice:0:100)+'...':(post.abstract)}}">
+                                    </app-row-view>
+                                    <app-row-view title="Description:"
+                                        value="{{ (post.lead_paragraph.length>100)?(post.lead_paragraph | slice:0:100)+'...':(post.lead_paragraph)}}">
+                                    </app-row-view>
+                                    <app-row-view title="Source:" value="{{post.source}}"></app-row-view>
+                                    <app-row-view title="Section:" value="{{post.section_name}}"></app-row-view>
+                                    <app-row-view title="Date:" value="{{post.pub_date.split('T')[0]}}"></app-row-view>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-tab>
+    </mat-tab-group>
+    <div style="height: 50px; display: flex; justify-content: center;align-items: center; background-color: #eee;margin-top: 50px;">
+        {{copyright}}
+    </div>
+</div>
