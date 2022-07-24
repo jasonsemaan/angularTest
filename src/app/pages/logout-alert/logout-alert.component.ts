@@ -21,7 +21,6 @@ export class LogoutAlertComponent implements OnInit {
     this.matDialog.closeAll();
   }
   
-
   ngOnInit(): void {
   }
 
