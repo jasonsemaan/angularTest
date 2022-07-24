@@ -23,8 +23,6 @@ export class PostsComponent implements OnInit {
   copyright: any="";
   randomImg: any="";
 
-
-
   showPopup(post: any) {
     let dialogRef = this.dialog.open(PopupComponent, { data: { item: post } });
     dialogRef.afterClosed().subscribe(result => {
